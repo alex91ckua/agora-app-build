@@ -234,7 +234,7 @@ const VideoCall: React.FC = () => {
   const [isHost, setIsHost] = React.useState(false);
   const [title, setTitle] = React.useState('');
   const [rtcProps, setRtcProps] = React.useState({
-    appId: $config.APP_ID,
+    appId: window['AGORA_APP_ID'],
     channel: null,
     uid: null,
     token: null,
@@ -271,7 +271,7 @@ const VideoCall: React.FC = () => {
       console.log('token:', rtcProps.token);
       console.log('error', data.error);
       setRtcProps({
-        appId: $config.APP_ID,
+        appId: window['AGORA_APP_ID'],
         channel: data.joinChannel.channel,
         uid: data.joinChannel.mainUser.uid,
         token: data.joinChannel.mainUser.rtc,

@@ -19,8 +19,8 @@ import {url, oAuthSystemType} from './OAuthConfig';
 
 const processUrl = (url: string): string => {
   return url
-    .replace(`${$config.PRODUCT_ID.toLowerCase()}://my-host`, '')
-    .replace($config.FRONTEND_ENDPOINT, '');
+    .replace(`${window['AGORA_PRODUCT_ID'].toLowerCase()}://my-host`, '')
+    .replace(window['AGORA_FRONTEND_ENDPOINT'], '');
 };
 
 const Oauth = () => {

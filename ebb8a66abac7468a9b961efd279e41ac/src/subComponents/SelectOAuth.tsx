@@ -28,7 +28,7 @@ const SelectOAuth = ({onSelectOAuth}) => {
       </View>
       <View style={style.content}>
         <View style={style.leftContent}>
-          <Text style={style.heading}>{$config.APP_NAME}</Text>
+          <Text style={style.heading}>{window['AGORA_APP_NAME']}</Text>
           <Text style={style.headline}>{$config.LANDING_SUB_HEADING}</Text>
           <View style={style.inputs}>
             <View style={style.oAuthContainer}>

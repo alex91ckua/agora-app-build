@@ -44,10 +44,10 @@ const ParticipantView = (props: {showText?: boolean}) => {
     Toast.show({text1: 'Copied to Clipboard', visibilityTime: 1000});
     if (data && !loading) {
       let stringToCopy = '';
-      if ($config.FRONTEND_ENDPOINT) {
-        stringToCopy += `Meeting - ${data.share.title}\nURL for Attendee: ${$config.FRONTEND_ENDPOINT}/agora-call/${data.share.passphrase.view}`;
+      if (window['AGORA_FRONTEND_ENDPOINT']) {
+        stringToCopy += `Meeting - ${data.share.title}\nURL for Attendee: ${window['AGORA_FRONTEND_ENDPOINT']}/agora-call/${data.share.passphrase.view}`;
         if (data.share.passphrase.host) {
-          stringToCopy += `\nURL for Host: ${$config.FRONTEND_ENDPOINT}/agora-call/${data.share.passphrase.host}`;
+          stringToCopy += `\nURL for Host: ${window['AGORA_FRONTEND_ENDPOINT']}/agora-call/${data.share.passphrase.host}`;
         }
       } else {
         if (platform === 'web') {

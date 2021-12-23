@@ -51,13 +51,13 @@ const Share = (props: any) => {
     Toast.show({ text1: 'Copied to Clipboard', visibilityTime: 1000 });
     let stringToCopy = '';
 
-    $config.FRONTEND_ENDPOINT
+    window['AGORA_FRONTEND_ENDPOINT']
       ? hostControlCheckbox
         ? (stringToCopy += `Meeting - ${roomTitle}
-URL for Attendee: ${$config.FRONTEND_ENDPOINT}/agora-call/${urlView}
-URL for Host: ${$config.FRONTEND_ENDPOINT}/agora-call/${urlHost}`)
+URL for Attendee: ${window['AGORA_FRONTEND_ENDPOINT']}/agora-call/${urlView}
+URL for Host: ${window['AGORA_FRONTEND_ENDPOINT']}/agora-call/${urlHost}`)
         : (stringToCopy += `Meeting - ${roomTitle}
-Meeting URL: ${$config.FRONTEND_ENDPOINT}/agora-call/${urlHost}`)
+Meeting URL: ${window['AGORA_FRONTEND_ENDPOINT']}/agora-call/${urlHost}`)
       : platform === 'web'
       ? hostControlCheckbox
         ? (stringToCopy += `Meeting - ${roomTitle}
@@ -82,8 +82,8 @@ PSTN Pin: ${pstn.dtmf}`)
   const copyHostUrl = () => {
     Toast.show({ text1: 'Copied to Clipboard',  visibilityTime: 1000});
     let stringToCopy = '';
-    $config.FRONTEND_ENDPOINT
-      ? (stringToCopy += `${$config.FRONTEND_ENDPOINT}/agora-call/${urlHost}`)
+    window['AGORA_FRONTEND_ENDPOINT']
+      ? (stringToCopy += `${window['AGORA_FRONTEND_ENDPOINT']}/agora-call/${urlHost}`)
       : platform === 'web'
       ? (stringToCopy += `${window.location.origin}/agora-call/${urlHost}`)
       : (stringToCopy += `Meeting ID: ${urlHost}`)
@@ -93,8 +93,8 @@ PSTN Pin: ${pstn.dtmf}`)
   const copyAttendeeURL = () => {
     Toast.show({ text1: 'Copied to Clipboard',  visibilityTime: 1000});
     let stringToCopy = '';
-    $config.FRONTEND_ENDPOINT
-      ? (stringToCopy += `${$config.FRONTEND_ENDPOINT}/agora-call/${urlView}`)
+    window['AGORA_FRONTEND_ENDPOINT']
+      ? (stringToCopy += `${window['AGORA_FRONTEND_ENDPOINT']}/agora-call/${urlView}`)
       : platform === 'web'
       ? (stringToCopy += `${window.location.origin}/agora-call/${urlView}`)
       : (stringToCopy += `Meeting ID: ${urlView}`)
@@ -120,20 +120,20 @@ PSTN Pin: ${pstn.dtmf}`)
     <View style={style.content} onLayout={onLayout}>
       <View style={style.leftContent}>
         <View>
-        <Text style={style.heading}>{$config.APP_NAME}</Text>
+        <Text style={style.heading}>{window['AGORA_APP_NAME']}</Text>
         <Text style={style.headline}>{$config.LANDING_SUB_HEADING}</Text>
         </View>
         {hostControlCheckbox ? (
             <View style={style.urlContainer}>
               <View style={{width: '80%'}}>
               <Text style={style.urlTitle}>
-                {$config.FRONTEND_ENDPOINT || platform === 'web'
+                {window['AGORA_FRONTEND_ENDPOINT'] || platform === 'web'
                 ? "Attendee URL" : "Attendee ID"}
               </Text>
               <View style={style.urlHolder}>
                 <Text style={[style.url, Platform.OS === 'web' ? urlWeb : {opacity: 1}]}>
-                  {$config.FRONTEND_ENDPOINT
-                    ? `${$config.FRONTEND_ENDPOINT}/agora-call/${urlView}`
+                  {window['AGORA_FRONTEND_ENDPOINT']
+                    ? `${window['AGORA_FRONTEND_ENDPOINT']}/agora-call/${urlView}`
                     : platform === 'web'
                       ? `${window.location.origin}/agora-call/${urlView}`
                       : urlView}
@@ -156,14 +156,14 @@ PSTN Pin: ${pstn.dtmf}`)
         <View style={style.urlContainer}>
           <View style={{ width: '80%' }}>
             <Text style={style.urlTitle}>
-            {$config.FRONTEND_ENDPOINT || platform === 'web' ? hostControlCheckbox
+            {window['AGORA_FRONTEND_ENDPOINT'] || platform === 'web' ? hostControlCheckbox
                 ? 'Host URL' : 'Meeting URL'
                 : hostControlCheckbox ? 'Host ID' : 'Meeting ID'}
             </Text>
             <View style={style.urlHolder}>
               <Text style={[style.url, Platform.OS === 'web' ? urlWeb : {opacity: 1}]}>
-                {$config.FRONTEND_ENDPOINT
-                  ? `${$config.FRONTEND_ENDPOINT}/agora-call/${urlHost}`
+                {window['AGORA_FRONTEND_ENDPOINT']
+                  ? `${window['AGORA_FRONTEND_ENDPOINT']}/agora-call/${urlHost}`
                   : platform === 'web'
                     ? `${window.location.origin}/agora-call/${urlHost}`
                     : urlHost}

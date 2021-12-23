@@ -78,7 +78,7 @@ const Create = () => {
       createChannel({
         variables: {
           title: roomTitle,
-          backendURL: $config.BACKEND_ENDPOINT,
+          backendURL: window['AGORA_BACKEND_ENDPOINT'],
           enablePSTN: pstnCheckbox,
         },
       })
@@ -123,7 +123,7 @@ const Create = () => {
       {!roomCreated ? (
         <View style={style.content} onLayout={onLayout}>
           <View style={style.leftContent}>
-            <Text style={style.heading}>{$config.APP_NAME}</Text>
+            <Text style={style.heading}>{window['AGORA_APP_NAME']}</Text>
             <Text style={style.headline}>{$config.LANDING_SUB_HEADING}</Text>
             <View style={style.inputs}>
               <TextInput
